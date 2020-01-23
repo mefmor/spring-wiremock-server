@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class WireMockServerComponent implements CommandLineRunner {
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         new WireMockServerRunner().run(args);
     }
 }
