@@ -3,6 +3,9 @@ Standalone WireMock server in spring boot module
 
 ## Commands
 
+### Get currently registered stub mapping
+GET request to http://host:port/__admin
+
 ### Set response
 POST request to **http://host:port/__admin/mappings/new** with settings
 ```
