@@ -1,7 +1,11 @@
 # spring-wiremock-server
 Standalone WireMock server in spring boot module
 
-## Commands
+## Content
+- **src/main/resources/__files**
+- **src/main/resources/mappings** - files containing predefined mapping settings. Attention! Will be reset after executing the _/__admin/mappings/reset_ command.
+
+## Rest Commands
 
 ### Get currently registered stub mapping
 GET request to http://host:port/__admin
