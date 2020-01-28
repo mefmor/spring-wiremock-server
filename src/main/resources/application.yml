@@ -1,0 +1,15 @@
+spring.main.web-application-type: none
+
+wiremock:
+  server:
+    stubs: file:src/main/resources/mappings
+    # Resource locations for files that represent response bodies. Wiremock defaults to "file:src/test/resources/__files"
+    files: file:src/main/resources/__files
+
+# The port number for the server to listen on (default: 8080)
+# wiremock.server.port=8080
+# wiremock.server.portDynamic=false
+
+# If this option is present WireMock will enable HTTPS on the specified port
+# wiremock.server.httpsPort=-1
+# wiremock.server.httpsPortDynamic=false
