@@ -2,9 +2,9 @@ spring.main.web-application-type: none
 
 wiremock:
   server:
-    stubs: file:src/main/resources/mappings
+    stubs: classpath:/mappings
     # Resource locations for files that represent response bodies. Wiremock defaults to "file:src/test/resources/__files"
-    files: file:src/main/resources/__files
+    files: classpath:/__files
 
 # The port number for the server to listen on (default: 8080)
 # wiremock.server.port=8080
