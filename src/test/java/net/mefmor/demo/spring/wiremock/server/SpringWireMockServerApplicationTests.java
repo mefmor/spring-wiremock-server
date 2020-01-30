@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,8 +24,11 @@ class SpringWireMockServerApplicationTests {
 
     @Test
     void byDefaultThereIsNoResponse() {
-        assertThat(restTemplate.getForEntity("/endpoint", String.class).getBody()).
-                isEqualTo("No response could be served as there are no stub mappings in this WireMock instance.");
+        ResponseEntity<String> response = restTemplate.getForEntity("/endpoint", String.class);
+
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(response.getBody())
+                .isEqualTo("No response could be served as there are no stub mappings in this WireMock instance.");
     }
 
     @Test
@@ -32,7 +37,6 @@ class SpringWireMockServerApplicationTests {
 
         restTemplate.postForLocation("/__admin/mappings/new", request);
 
-        assertThat(restTemplate.getForEntity("/endpoint", String.class).getBody()).
-                isEqualTo("Here it is!");
+        assertThat(restTemplate.getForEntity("/endpoint", String.class).getBody()).isEqualTo("Here it is!");
     }
 }
