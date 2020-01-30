@@ -2,23 +2,21 @@ package net.mefmor.demo.spring.wiremock.server;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest
 class SpringWireMockServerApplicationTests {
 
-    @Autowired
-    private TestRestTemplate restTemplate;
+    private TestRestTemplate restTemplate = new TestRestTemplate();
 
     @BeforeEach
     void resetDefaultParameters() {
+        restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory("http://localhost:8080"));
         restTemplate.postForLocation("/__admin/mappings/reset", "");
     }
 
