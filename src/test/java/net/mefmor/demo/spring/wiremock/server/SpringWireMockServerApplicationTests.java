@@ -6,8 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @SpringBootTest
 class SpringWireMockServerApplicationTests {
@@ -22,8 +22,8 @@ class SpringWireMockServerApplicationTests {
 
     @Test
     void byDefaultThereIsNoResponse() {
-        assertThat(restTemplate.getForEntity("/endpoint", String.class).getBody(),
-                equalTo("No response could be served as there are no stub mappings in this WireMock instance."));
+        assertThat(restTemplate.getForEntity("/endpoint", String.class).getBody()).
+                isEqualTo("No response could be served as there are no stub mappings in this WireMock instance.");
     }
 
     @Test
@@ -32,7 +32,7 @@ class SpringWireMockServerApplicationTests {
 
         restTemplate.postForLocation("/__admin/mappings/new", request);
 
-        assertThat(restTemplate.getForEntity("/endpoint", String.class).getBody(),
-                equalTo("Here it is!"));
+        assertThat(restTemplate.getForEntity("/endpoint", String.class).getBody()).
+                isEqualTo("Here it is!");
     }
 }
