@@ -6,7 +6,7 @@ import org.springframework.cloud.contract.wiremock.WireMockConfiguration;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
-@Import(WireMockConfiguration.class)
+@Import(WireMockConfiguration.class) // you can use @AutoConfigureWireMock instead, but without unit-tests
 public class SpringWireMockServerApplication {
 
     public static void main(String[] args) {
