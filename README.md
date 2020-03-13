@@ -3,6 +3,9 @@ Standalone WireMock server in spring boot module
 
 ## Using
 
+### Get full documentation
+Open in browser /__admin/docs/
+
 ### Get currently registered stub mapping
 GET request to http://host:port/__admin
 
